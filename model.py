@@ -171,6 +171,11 @@ def run_market_making_episode(true_value, counterparty_sides, initial_fair_value
     pnl = mark_to_market_pnl(cash, inventory, true_value)
     return {"pnl": pnl, "cash": cash, "inventory": inventory, "fair_value": fair_value, "history": history}
 
-# Step 14 - summarize_episode_pnls (not yet solved)
-# TODO: implement
+# Step 14 - summarize_episode_pnls
+def summarize_episode_pnls(pnls):
+    pnls = np.asarray(pnls, dtype = float)
+    mean = float(np.mean(pnls))
+    std = float(np.std(pnls))
+    worst = float(np.min(pnls))
+    return {'mean': mean, 'std': std, 'worst': worst}
 
