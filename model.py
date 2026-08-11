@@ -27,8 +27,19 @@ def one_reroll_die_value(sides):
         "reroll_faces": sorted(reroll_faces),
     }
 
-# Step 3 - pay_per_reroll_die_game (not yet solved)
-# TODO: implement
+# Step 3 - pay_per_reroll_die_game
+def pay_per_reroll_die_game(sides, reroll_cost):
+    best_threshold = None
+    best_value = float("-inf")
+    for t in range(1, sides + 1):
+        value = ((t + sides) / 2) - ((t - 1) / (sides - t + 1) * reroll_cost)
+        if value > best_value:
+            best_value = value
+            best_threshold = t
+    return {
+        'threshold': best_threshold, 
+        'value': best_value
+    }
 
 # Step 4 - red_black_card_game_value (not yet solved)
 # TODO: implement
