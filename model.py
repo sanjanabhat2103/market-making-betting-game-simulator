@@ -12,8 +12,20 @@ def expected_value(values, probabilities):
     probabilities = np.asarray(probabilities, dtype = float)
     return float(np.sum(values * probabilities))
 
-# Step 2 - one_reroll_die_value (not yet solved)
-# TODO: implement
+# Step 2 - one_reroll_die_value
+def one_reroll_die_value(sides):
+    if not isinstance(sides, int) or sides < 1:
+        raise ValueError("sides must be a positive integer")
+    mean = (sides + 1) / 2
+    reroll_faces = [face for face in range(1, sides + 1) if face < mean]
+    value = (
+        sum(face for face in range(1, sides + 1) if face not in reroll_faces)
+        + len(reroll_faces) * mean
+    ) / sides
+    return {
+        "value": value,
+        "reroll_faces": sorted(reroll_faces),
+    }
 
 # Step 3 - pay_per_reroll_die_game (not yet solved)
 # TODO: implement
