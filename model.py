@@ -83,8 +83,17 @@ def make_quotes(fair_value, spread_width):
     ask = fair_value + half
     return {"bid": bid, "ask": ask}
 
-# Step 6 - execute_trade (not yet solved)
-# TODO: implement
+# Step 6 - execute_trade
+def execute_trade(state, side, bid, ask, size=1):
+    c = state["cash"]
+    i = state["inventory"]
+    if side == "buy":
+        c += size * ask
+        i -= size
+    elif side == "sell":
+        c -= size * bid
+        i += size
+    return {"cash": c, "inventory": i}
 
 # Step 7 - mark_to_market_pnl (not yet solved)
 # TODO: implement
