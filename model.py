@@ -76,8 +76,12 @@ def red_black_card_game_value(num_red, num_black):
         "stop_now": cont <= 0.0,
     }
 
-# Step 5 - make_quotes (not yet solved)
-# TODO: implement
+# Step 5 - make_quotes
+def make_quotes(fair_value, spread_width):
+    half = spread_width / 2
+    bid = fair_value - half
+    ask = fair_value + half
+    return {"bid": bid, "ask": ask}
 
 # Step 6 - execute_trade (not yet solved)
 # TODO: implement
