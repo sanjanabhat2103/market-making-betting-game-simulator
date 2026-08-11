@@ -95,8 +95,9 @@ def execute_trade(state, side, bid, ask, size=1):
         i += size
     return {"cash": c, "inventory": i}
 
-# Step 7 - mark_to_market_pnl (not yet solved)
-# TODO: implement
+# Step 7 - mark_to_market_pnl
+def mark_to_market_pnl(cash, inventory, settlement_value):
+    return cash + inventory * settlement_value
 
 # Step 8 - adverse_selection_loss (not yet solved)
 # TODO: implement
