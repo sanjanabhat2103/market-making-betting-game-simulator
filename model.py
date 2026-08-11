@@ -133,8 +133,22 @@ def update_fair_value_from_trade(fair_value, side, bid, ask, adjustment):
         fair_value -= adjustment * half_spread
     return float(fair_value)
 
-# Step 12 - update_remaining_card_value (not yet solved)
-# TODO: implement
+# Step 12 - update_remaining_card_value
+def update_remaining_card_value(remaining_counts, revealed_value):
+    remaining_counts_c = dict(remaining_counts)
+    remaining_counts_c[revealed_value] -= 1
+    if remaining_counts_c[revealed_value] <= 0:
+        del remaining_counts_c[revealed_value]
+    N = sum(remaining_counts_c.values())
+    if N == 0:
+        ev = 0.0
+    else:
+        values = list(remaining_counts_c.keys())
+        probabilities = [
+            count / N for count in remaining_counts_c.values()
+        ]
+        ev = expected_value(values, probabilities)
+    return {"remaining_counts": remaining_counts_c, "expected_value": ev}
 
 # Step 13 - run_market_making_episode (not yet solved)
 # TODO: implement
